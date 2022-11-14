@@ -30,10 +30,9 @@ namespace WpfApp1.Repositories
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true;
-                MainWindow main = new MainWindow();
-                LoginView login = new LoginView();
-                login.Hide();
-                main.Show();
+                //SolanaVpnView vpn = new SolanaVpnView();
+                //LoginView login = new LoginView();
+                //login.Hide();
 
             }
             return validUser;

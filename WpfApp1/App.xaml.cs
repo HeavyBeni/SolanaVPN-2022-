@@ -21,12 +21,12 @@ namespace WpfApp1
             loginView.Show();
             loginView.IsVisibleChanged += (s, ev) =>
             {
-                //if (loginView.IsVisible == false && loginView.IsLoaded)
-                //{
-                //    var mainView = new MainWindow();
-                //    mainView.Show();
-                //    loginView.Close();
-                //}
+                if (loginView.IsVisible == false && loginView.IsLoaded)
+                {
+                    var vpnView = new SolanaVpnView();
+                    vpnView.Show();
+                    loginView.Close();
+                }
             };
         }
     }

@@ -1,0 +1,214 @@
+﻿<Window x:Class="WpfApp1.Views.SolanaVpnView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        xmlns:viewModel="clr-namespace:WpfApp1.ViewModels"
+        mc:Ignorable="d"
+        Title="SolanaVpn" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="CanResize"
+        MouseDown="Window_MouseDown">
+
+    <!--<Window.DataContext>
+        <viewModel:SolanaVpnViewModel/>
+    </Window.DataContext>-->
+
+    <DockPanel Background="#1E1E1E"
+               Margin="7">
+
+        <Border Height="28"
+                Background="#252525"
+                DockPanel.Dock="Top">
+
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+
+                </Grid.ColumnDefinitions>
+                <!--Title-->
+                <TextBlock Text="Solana VPN 0.1"
+                           Foreground="LightGray"
+                           FontFamily="Consolas"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Margin="100,0,0,0"/>
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,4,0">
+                    <!--Buttons Mini, Full, Leave, Coded in Xaml.cs-->
+                    <Button x:Name="btnMinimize"
+                            Background="#28AEED"
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28AEED"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+
+                    </Button>
+                    <Button x:Name="btnFullScreen"
+                            Background="#DA34AE"
+                            BorderThickness="0"
+                            Content="🗖"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnFullScreen_Click"
+                            Margin="4,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C62DAE"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button x:Name="btnClose"
+                            Background="#DA34AE"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click"
+                            Margin="4,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C62DAE"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <!--MenuBar Left Side-->
+        <Border Width="48"
+                HorizontalAlignment="Left"
+                Background="#252525">
+            <Border.Style>
+                <Style>
+                    <Style.Triggers>
+                        <!--Open On MouseEnter-->
+                        <EventTrigger RoutedEvent="Border.MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Width)"
+                                                         To="120"
+                                                         Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+
+                        <!--Close on MouseLeave-->
+                        <EventTrigger RoutedEvent="Border.MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Width)"
+                                                         To="48"
+                                                         Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+
+            </Border.Style>
+
+            <StackPanel>
+                <RadioButton Content="VPN"
+                             FontSize="16"
+                             FontWeight="Normal"
+                             Foreground="LightGray"
+                             IsChecked="True"/>
+
+                <RadioButton Content="VPN"
+                             FontSize="16"
+                             FontWeight="Normal"
+                             Foreground="LightGray"/>
+
+                <RadioButton Content="VPN"
+                             FontSize="16"
+                             FontWeight="Normal"
+                             Foreground="LightGray"/>
+            </StackPanel>
+
+        </Border>
+
+        <ContentPresenter Content="{Binding CurrentView}"/>
+
+    </DockPanel>
+</Window>

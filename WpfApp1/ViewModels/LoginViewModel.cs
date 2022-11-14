@@ -10,6 +10,7 @@ using WpfApp1.Models;
 using WpfApp1.Repositories;
 using System.Threading;
 using System.Security.Principal;
+using WpfApp1.Views;
 
 namespace WpfApp1.ViewModels
 {
@@ -75,7 +76,7 @@ namespace WpfApp1.ViewModels
         }
 
         //Commands
-        
+
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
@@ -109,6 +110,8 @@ namespace WpfApp1.ViewModels
                 Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(Username), null);
                 IsViewVisible = false;
+
+
             }
             else
             {
