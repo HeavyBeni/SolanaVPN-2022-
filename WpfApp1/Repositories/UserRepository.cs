@@ -26,7 +26,7 @@ namespace WpfApp1.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select *from [User] where username=@username and [password]=@password";
+                command.CommandText = "select *from [user1] where username=@username and [password]=@password";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true;

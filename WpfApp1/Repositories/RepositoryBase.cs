@@ -12,7 +12,7 @@ namespace WpfApp1.Repositories
         private readonly string _connectionString;
         public RepositoryBase()
         {
-            _connectionString = "Data Source=(localdb)\\local;Initial Catalog=logindb;Integrated Security=True";
+            _connectionString = "Data Source=(localdb)\\local;Initial Catalog=homeLoginDb;Integrated Security=True";
         }
         protected SqlConnection GetConnection()
         {

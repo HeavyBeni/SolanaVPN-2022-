@@ -11,12 +11,11 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        ResizeMode="CanResize"
-        MouseDown="Window_MouseDown">
+        ResizeMode="CanResize">
 
-    <!--<Window.DataContext>
+    <Window.DataContext>
         <viewModel:SolanaVpnViewModel/>
-    </Window.DataContext>-->
+    </Window.DataContext>
 
     <DockPanel Background="#1E1E1E"
                Margin="7">
@@ -46,105 +45,15 @@
                             HorizontalAlignment="Right"
                             Margin="0,0,4,0">
                     <!--Buttons Mini, Full, Leave, Coded in Xaml.cs-->
-                    <Button x:Name="btnMinimize"
-                            Background="#28AEED"
-                            BorderThickness="0"
-                            Content="-"
-                            Foreground="White"
-                            FontSize="16"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Grid.Column="1"
-                            Click="btnMinimize_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#28AEED"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#278BEF"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
+                    <Button Content="-"
+                            Command="{Binding MinimizeWindowCommand}"/>
+                    <Button Content="🗖"
+                            Command="{Binding MaximizeWindowCommand}"
+                            Padding="0,0,0,2"/>
+                    <Button Content="X"
+                            Command="{Binding ShutdownWindowCommand}"
+                            Padding="0,0,0,2"/>
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
-                                        CornerRadius="9"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-
-                    </Button>
-                    <Button x:Name="btnFullScreen"
-                            Background="#DA34AE"
-                            BorderThickness="0"
-                            Content="🗖"
-                            Foreground="White"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Grid.Column="2"
-                            Click="btnFullScreen_Click"
-                            Margin="4,0,0,0">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#DA34AE"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#C62DAE"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
-                                        CornerRadius="9"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <Button x:Name="btnClose"
-                            Background="#DA34AE"
-                            BorderThickness="0"
-                            Content="X"
-                            Foreground="White"
-                            FontSize="12"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Grid.Column="2"
-                            Click="btnClose_Click"
-                            Margin="4,0,0,0">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#DA34AE"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#C62DAE"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
-                                        CornerRadius="9"
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
 
                 </StackPanel>
 
@@ -193,17 +102,19 @@
                              FontSize="16"
                              FontWeight="Normal"
                              Foreground="LightGray"
-                             IsChecked="True"/>
+                             IsChecked="True"
+                             Command="{Binding ShowProtectionView}"/>
 
                 <RadioButton Content="VPN"
                              FontSize="16"
                              FontWeight="Normal"
                              Foreground="LightGray"/>
 
-                <RadioButton Content="VPN"
+                <RadioButton Content="Settings"
                              FontSize="16"
                              FontWeight="Normal"
-                             Foreground="LightGray"/>
+                             Foreground="LightGray"
+                             Command="{Binding ShowSettingsView}"/>
             </StackPanel>
 
         </Border>

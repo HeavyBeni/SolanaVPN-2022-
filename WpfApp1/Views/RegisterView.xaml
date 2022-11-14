@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:viewModel="clr-namespace:WpfApp1.ViewModels" xmlns:customcontrols="clr-namespace:WpfApp1.CustomControls"
         mc:Ignorable="d"
-        Title="RegisterView" Height="550" Width="800"
+        Title="RegisterView" Height="550" Width="300"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -155,14 +155,14 @@
                     <Image Source="/Images/Logo.png"
                            Width="100" Height="100"/>
 
-                    <TextBlock Text="High Tech XAML"
+                    <TextBlock Text="Solana VPN"
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
 
-                    <TextBlock Text="MVVM is Fun!"
+                    <TextBlock Text="* Welcome Aboard!"
                                Foreground="LightGray"
                                FontSize="12"
                                FontWeight="Medium"
