@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using WpfApp1.ViewModel;
 
 
@@ -12,7 +13,6 @@ namespace WpfApp1.ViewModels
     internal class SolanaVpnViewModel : ViewModelBase
     {
         //Commands
-        public ViewModelCommand MoveWindowCommand { get; set; }
         public ViewModelCommand ShutdownWindowCommand{ get; set; }
         public ViewModelCommand MaximizeWindowCommand { get; set; }
         public ViewModelCommand MinimizeWindowCommand { get; set; }
@@ -38,29 +38,30 @@ namespace WpfApp1.ViewModels
 
         public SolanaVpnViewModel()
         {
+
             SolanaVpnProtectionVM = new SolanaVpnProtectionViewModel();
             SolanaVpnSettingsVM = new SolanaVpnSettingsViewModel();
             CurrentView = SolanaVpnProtectionVM;
 
-            Application.Current.MainWindow.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            //Application.Current.MainWindow.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
-            MoveWindowCommand = new ViewModelCommand(o => { Application.Current.MainWindow.DragMove(); });
-            ShutdownWindowCommand = new ViewModelCommand(o => { Application.Current.Shutdown(); });
-            MaximizeWindowCommand = new ViewModelCommand(o =>
-            {
-                if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
-                {
-                    Application.Current.MainWindow.WindowState = WindowState.Normal;
-                }
-                else
-                {
-                    Application.Current.MainWindow.WindowState = WindowState.Maximized;
-                }
-            });
-            MinimizeWindowCommand = new ViewModelCommand(o => { Application.Current.MainWindow.WindowState = WindowState.Minimized; });
+            //MoveWindowCommand = new ViewModelCommand(o => { Application.Current.MainWindow.DragMove(); });
+            //ShutdownWindowCommand = new ViewModelCommand(o => { Application.Current.Shutdown(); });
+            //MaximizeWindowCommand = new ViewModelCommand(o =>
+            //{
+            //    if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
+            //    {
+            //        Application.Current.MainWindow.WindowState = WindowState.Normal;
+            //    }
+            //    else
+            //    {
+            //        Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            //    }
+            //});
+            //MinimizeWindowCommand = new ViewModelCommand(o => { Application.Current.MainWindow.WindowState = WindowState.Minimized; });
 
-            ShowProtectionView = new ViewModelCommand(o => { CurrentView = SolanaVpnProtectionVM; });
-            ShowSettingsView = new ViewModelCommand(o => { CurrentView = SolanaVpnSettingsVM; });
+            //ShowProtectionView = new ViewModelCommand(o => { CurrentView = SolanaVpnProtectionVM; });
+            //ShowSettingsView = new ViewModelCommand(o => { CurrentView = SolanaVpnSettingsVM; });
 
         }
     }

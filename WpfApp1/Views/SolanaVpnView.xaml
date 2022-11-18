@@ -11,7 +11,8 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        ResizeMode="CanResize">
+        ResizeMode="CanResize"
+        MouseDown="Window_MouseDown">
 
     <Window.DataContext>
         <viewModel:SolanaVpnViewModel/>
@@ -46,12 +47,12 @@
                             Margin="0,0,4,0">
                     <!--Buttons Mini, Full, Leave, Coded in Xaml.cs-->
                     <Button Content="-"
-                            Command="{Binding MinimizeWindowCommand}"/>
+                            Click="btnMinimize_Click"/>
                     <Button Content="🗖"
-                            Command="{Binding MaximizeWindowCommand}"
+                            Click="btnMaximize_Click"
                             Padding="0,0,0,2"/>
                     <Button Content="X"
-                            Command="{Binding ShutdownWindowCommand}"
+                            Click="btnExit_Click"
                             Padding="0,0,0,2"/>
 
 

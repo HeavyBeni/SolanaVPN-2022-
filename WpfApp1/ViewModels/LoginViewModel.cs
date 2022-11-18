@@ -82,6 +82,8 @@ namespace WpfApp1.ViewModels
         public ICommand ShowPasswordCommand { get; }
         public ICommand RememberPasswordCommand { get; }
 
+
+
         //Constructor
         public LoginViewModel()
         {
