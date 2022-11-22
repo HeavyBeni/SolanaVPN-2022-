@@ -10,6 +10,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!--Themes-->
                 <ResourceDictionary Source="/Themes/TitlebarButton.Nord.xaml"/>
+                <ResourceDictionary Source="/Themes/MenuButton.Nord.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type vms:SolanaVpnProtectionViewModel}">

@@ -16,7 +16,7 @@
                             CornerRadius="2">
                         <ContentPresenter VerticalAlignment="Center"
                                           HorizontalAlignment="Center"
-                                          Margin="{TemplateBinding Margin}"/>
+                                          Margin="{TemplateBinding Padding}"/>
                     </Border>
 
                     <ControlTemplate.Triggers>

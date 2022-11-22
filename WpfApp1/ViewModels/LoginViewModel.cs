@@ -91,7 +91,7 @@ namespace WpfApp1.ViewModels
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }
-
+        
 
         private bool CanExecuteLoginCommand(object obj)
         {

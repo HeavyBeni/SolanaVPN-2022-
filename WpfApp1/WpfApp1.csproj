@@ -21,6 +21,13 @@
 
   <ItemGroup>
     <Page Remove="MainWindow.xaml" />
+    <Page Remove="Themes\MenuButton.Nord.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Themes\MenuButton.Nord.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

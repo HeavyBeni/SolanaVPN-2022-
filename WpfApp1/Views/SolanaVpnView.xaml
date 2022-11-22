@@ -47,10 +47,11 @@
                             Margin="0,0,4,0">
                     <!--Buttons Mini, Full, Leave, Coded in Xaml.cs-->
                     <Button Content="-"
+                            Padding="0,0,0,2"
                             Click="btnMinimize_Click"/>
                     <Button Content="🗖"
-                            Click="btnMaximize_Click"
-                            Padding="0,0,0,2"/>
+                            Padding="0,0,0,3"
+                            Click="btnMaximize_Click"/>
                     <Button Content="X"
                             Click="btnExit_Click"
                             Padding="0,0,0,2"/>
