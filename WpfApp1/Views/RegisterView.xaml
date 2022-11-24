@@ -23,7 +23,7 @@
     </Window.Resources>
 
     <Window.Visibility>
-        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+        <Binding Path="IsRegisterViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
     </Window.Visibility>
 
     <Border CornerRadius="12">
@@ -218,11 +218,11 @@
                                FontFamily="Montserrat"
                                Margin="0,15,0,0"/>
 
-                    <customcontrols:BindableRepPasswordBox Password="{Binding ConPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    <customcontrols:BindableConPasswordBox Password="{Binding ConPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         Height="28"
                         Margin="0,5,0,0">
 
-                    </customcontrols:BindableRepPasswordBox>
+                    </customcontrols:BindableConPasswordBox>
 
                     <TextBlock Text="{Binding ErrorMessage}"
                                Foreground="#D7596D"

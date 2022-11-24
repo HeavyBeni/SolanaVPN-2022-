@@ -18,16 +18,32 @@ namespace WpfApp1
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
             var loginView = new LoginView();
+            //var registerView = new RegisterView();
+            //var vpnView = new SolanaVpnView();
             loginView.Show();
+
+            
+
             //loginView.IsVisibleChanged += (s, ev) =>
             //{
             //    if (loginView.IsVisible == false && loginView.IsLoaded)
             //    {
-            //        var vpnView = new SolanaVpnView();
             //        vpnView.Show();
             //        loginView.Close();
             //    }
             //};
+
+            //registerView.IsVisibleChanged += (s, ev) =>
+            //{
+            //    if (registerView.IsVisible == false && registerView.IsLoaded)
+            //    {
+            //        loginView.Show();
+            //        registerView.Close();
+            //    }
+            //};
+
+            //if (IsLogin)
+
         }
     }
 }

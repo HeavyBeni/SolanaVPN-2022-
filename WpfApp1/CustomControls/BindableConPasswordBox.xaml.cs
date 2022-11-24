@@ -17,28 +17,27 @@ using System.Windows.Shapes;
 namespace WpfApp1.CustomControls
 {
     /// <summary>
-    /// Interaction logic for BIndableRepPasswordBox.xaml
+    /// Interaction logic for BindableConPasswordBox.xaml
     /// </summary>
-    public partial class BindablePasswordBox : UserControl
+    public partial class BindableConPasswordBox : UserControl
     {
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(SecureString), typeof(BindablePasswordBox));
+            DependencyProperty.Register("Password", typeof(string), typeof(BindableConPasswordBox));
 
-        public SecureString Password
+        public string Password
         {
-            get { return (SecureString)GetValue(PasswordProperty); }
-            set { SetValue(PasswordProperty, value); }
+            get { return (string)GetValue(PasswordProperty); }
+            set => SetValue(PasswordProperty, value);
         }
-
-        public BindablePasswordBox()
+        public BindableConPasswordBox()
         {
             InitializeComponent();
-            txtRepPassword.PasswordChanged += OnPasswordChanged;
+            txtConPassword.PasswordChanged += OnPasswordChanged;
         }
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = txtRepPassword.SecurePassword;
+            Password = txtConPassword.Password;
         }
     }
 }

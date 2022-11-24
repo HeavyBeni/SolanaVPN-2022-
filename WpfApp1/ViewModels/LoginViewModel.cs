@@ -16,11 +16,11 @@ namespace WpfApp1.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        //Fields
+        // Fields
         private string _username;
-        private SecureString _password;
+        private string _password;
         private string _errorMessage;
-        private bool _isViewVisible = true;
+        private bool _isLoginViewVisible = true;
 
         private IUserRepository userRepository;
 
@@ -37,8 +37,8 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        //Properties
-        public SecureString Password
+        // Properties
+        public string Password
         {
             get
             {
@@ -62,20 +62,20 @@ namespace WpfApp1.ViewModels
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }
-        public bool IsViewVisible
+        public bool IsLoginViewVisible
         {
             get
             {
-                return _isViewVisible;
+                return _isLoginViewVisible;
             }
             set
             {
-                _isViewVisible = value;
-                OnPropertyChanged(nameof(IsViewVisible));
+                _isLoginViewVisible = value;
+                OnPropertyChanged(nameof(IsLoginViewVisible));
             }
         }
 
-        //Commands
+        // Commands
 
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
@@ -85,7 +85,7 @@ namespace WpfApp1.ViewModels
 
 
 
-        //Constructor
+        // Constructors
         public LoginViewModel()
         {
             userRepository = new UserRepository();
@@ -112,7 +112,7 @@ namespace WpfApp1.ViewModels
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(Username), null);
-                IsViewVisible = false;
+                IsLoginViewVisible = false;
 
 
             }

@@ -16,16 +16,20 @@ using System.Net;
 using WpfApp1.Views;
 using System.Security.Principal;
 using System.Threading;
+using WpfApp1.Models;
 
 namespace WpfApp1.ViewModels
 {
     internal class RegisterViewModel : ViewModelBase
     {
-
+        // Fields
         private string _username;
         private string _password;
         private string _conPassword;
         private string _errorMessage;
+        private bool _isRegisterViewVisible = true;
+
+        private IUserRepository userRepository;
 
         public string Username
         {
@@ -37,6 +41,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        // Properties
         public string Password
         {
             get
@@ -73,89 +78,73 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        public bool IsRegisterViewVisible
+        {
+            get
+            {
+                return _isRegisterViewVisible;
+            }
+            set
+            {
+                _isRegisterViewVisible = value;
+                OnPropertyChanged(nameof(IsRegisterViewVisible));
+            }
+        }
 
+        // Commands
         public ICommand RegisterCommand { get; }
 
-        private readonly string _connectionString;
 
-        // Constructor
+        // Constructors
         public RegisterViewModel()
         {
+            // Making a link to the UserRepository class
+            userRepository = new UserRepository();
+
+            // Getting the "Can-" and "Execute" Commands for Logging in
             RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
-            _connectionString = "Data Source=DESKTOP-H3UDNVA;Initial Catalog=LaptopDb;Integrated Security=True";
         }
 
         private bool CanExecuteRegisterCommand(object obj)
         {
-            //ErrorMessage = "* CanExecute";
-            //bool validData;
-            //if (string.IsNullOrWhiteSpace(Username) || Password == null || ConPassword == null || Password != ConPassword ||
-            //    Username.Length < 3 || Password.Length < 3 || ConPassword.Length < 3)
-            //{
-            //    validData = false;
-            //    ErrorMessage = "* validData = false;";
-            //}
-            //else
-            //{
-            //    validData = true;
-            //    ErrorMessage = "* validData = true;";
-            //}
-            //return validData;
-
-            bool CanExecute;
-            if (Username == null || Password == null)
+            bool validData;
+            // The login button wont be interactive until the requirements are met
+            if ( string.IsNullOrWhiteSpace(Username) || Password == null || ConPassword == null || Password != ConPassword ||
+                Username.Length < 3 || Password.Length < 3 || ConPassword.Length < 3 )
             {
-                CanExecute = false;
+                validData = false;
             }
             else
             {
-                CanExecute = true;
+                validData = true;
             }
-            return CanExecute;
 
-
-        }
-
-        protected SqlConnection GetConnection()
-        {
-            return new SqlConnection(_connectionString);
+            // It needs to be returned with TRUE value before entering ExecuteRegisterCommand
+            return validData;
         }
 
         private void ExecuteRegisterCommand(object obj)
         {
-            using SqlConnection connection = GetConnection();
-            using SqlCommand command = new();
-
-
-
-            connection.Open();
-            SqlCommand check_User_Name = new SqlCommand("SELECT COUNT(*) FROM [User1] WHERE ([Username] = @username)", connection);
-            check_User_Name.Parameters.AddWithValue("@username", Username);
-            int UserExist = (int)check_User_Name.ExecuteScalar();
-            connection.Close();
-
-
-
-            if (UserExist > 0)
+            // Checking for taken username, linked to "Repositories/UserRepository.cs"
+            bool usernameok = userRepository.IfTakenUsername(new string(Username));
+            if (usernameok)
             {
                 ErrorMessage = "* Username already taken!";
             }
             else
             {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "INSERT INTO User1(username, password) VALUES(@username, @password)";
-                command.Parameters.AddWithValue("@username", Username);
-                command.Parameters.AddWithValue("@password", Password);
-                command.ExecuteNonQuery();
-                connection.Close();
-
-                LoginView login = new LoginView();
-                RegisterView register = new RegisterView();
-                register.Close();
-                login.Show();
+                // Inserting Username and Password into Database, also linked to "Repositories/UserRepository.cs"
+                var isUserValid = userRepository.Add(new System.Net.NetworkCredential(Username, Password));
+                if (isUserValid)
+                {
+                    ErrorMessage = "+ User succesfully created!";
+                    IsRegisterViewVisible = false;
+                }
+                else
+                {
+                    ErrorMessage = "* Something went wrong.";
+                }
             }
-
         }
     }
 }

@@ -13,11 +13,30 @@ namespace WpfApp1.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public void Add(UserModel userModel)
-        {
-            throw new NotImplementedException();
-        }
 
+        
+        
+        public bool Add(NetworkCredential credential)
+        {
+            bool userCreated;
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO User1(username, password) VALUES(@username, @password)";
+                command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
+                command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
+                userCreated = command.ExecuteScalar() == null ? false : true;
+                connection.Close();
+                SolanaVpnView vpn = new SolanaVpnView();
+                RegisterView reg = new RegisterView();
+                reg.Close();
+                vpn.Show();
+            }
+            return userCreated;
+
+        }
         public bool AuthenticateUser(NetworkCredential credential)
         {
             bool validUser;
@@ -30,12 +49,39 @@ namespace WpfApp1.Repositories
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true;
-                //SolanaVpnView vpn = new SolanaVpnView();
-                //LoginView login = new LoginView();
-                //login.Hide();
+                connection.Close();
+                SolanaVpnView vpn = new SolanaVpnView();
+                LoginView login = new LoginView();
+                login.Close();
+                vpn.Show();
 
             }
             return validUser;
+        }
+
+        public bool IfTakenUsername(string username)
+        {
+            bool usernameTaken;
+            int UserExist;
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                SqlCommand check_User_Name = new SqlCommand("SELECT COUNT(*) FROM [User1] WHERE ([Username] = @username)", connection);
+                check_User_Name.Parameters.AddWithValue("@username", username);
+                UserExist = (int)check_User_Name.ExecuteScalar();
+                connection.Close();
+            }
+            if (UserExist > 0)
+            {
+                usernameTaken = true;
+            }
+            else
+            {
+                usernameTaken = false;
+            }
+            return usernameTaken;
+
         }
 
         public void Edit(UserModel userModel)
