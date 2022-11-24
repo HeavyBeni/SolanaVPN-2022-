@@ -21,13 +21,6 @@
 
   <ItemGroup>
     <Page Remove="MainWindow.xaml" />
-    <Page Remove="Themes\MenuButton.Nord.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Themes\MenuButton.Nord.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +33,12 @@
     <Resource Include="Images\key-icon.png" />
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\user-icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\MenuButton.Nord.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
 </Project>

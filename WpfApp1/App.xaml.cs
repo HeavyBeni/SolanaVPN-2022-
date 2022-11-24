@@ -19,15 +19,15 @@ namespace WpfApp1
         {
             var loginView = new LoginView();
             loginView.Show();
-            loginView.IsVisibleChanged += (s, ev) =>
-            {
-                if (loginView.IsVisible == false && loginView.IsLoaded)
-                {
-                    var vpnView = new SolanaVpnView();
-                    vpnView.Show();
-                    loginView.Close();
-                }
-            };
+            //loginView.IsVisibleChanged += (s, ev) =>
+            //{
+            //    if (loginView.IsVisible == false && loginView.IsLoaded)
+            //    {
+            //        var vpnView = new SolanaVpnView();
+            //        vpnView.Show();
+            //        loginView.Close();
+            //    }
+            //};
         }
     }
 }
