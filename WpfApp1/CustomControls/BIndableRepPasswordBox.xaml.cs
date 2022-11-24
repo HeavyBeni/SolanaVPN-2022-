@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,11 +19,26 @@ namespace WpfApp1.CustomControls
     /// <summary>
     /// Interaction logic for BIndableRepPasswordBox.xaml
     /// </summary>
-    public partial class BIndableRepPasswordBox : Page
+    public partial class BindablePasswordBox : UserControl
     {
-        public BIndableRepPasswordBox()
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register("Password", typeof(SecureString), typeof(BindablePasswordBox));
+
+        public SecureString Password
+        {
+            get { return (SecureString)GetValue(PasswordProperty); }
+            set { SetValue(PasswordProperty, value); }
+        }
+
+        public BindablePasswordBox()
         {
             InitializeComponent();
+            txtRepPassword.PasswordChanged += OnPasswordChanged;
+        }
+
+        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Password = txtRepPassword.SecurePassword;
         }
     }
 }
