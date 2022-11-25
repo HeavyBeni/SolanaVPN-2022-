@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:viewModel="clr-namespace:WpfApp1.ViewModels"
+        xmlns:extension="clr-namespace:WpfApp1.Core"
         mc:Ignorable="d"
         Title="SolanaVpn" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
@@ -101,18 +102,22 @@
 
             <StackPanel>
                 <RadioButton Content="VPN"
+                             extension:Extensions.Icon="&#128737;"
                              FontSize="16"
+                             Padding="7.6,3.5,8,0"
                              FontWeight="Normal"
                              Foreground="LightGray"
                              IsChecked="True"
                              Command="{Binding ShowProtectionView}"/>
 
-                <RadioButton Content="VPN"
+                <RadioButton Content="&lt;/&gt;"
                              FontSize="16"
                              FontWeight="Normal"
                              Foreground="LightGray"/>
 
                 <RadioButton Content="Settings"
+                             extension:Extensions.Icon="❁"
+                             Padding="7.6,03.5,10,0"
                              FontSize="16"
                              FontWeight="Normal"
                              Foreground="LightGray"
