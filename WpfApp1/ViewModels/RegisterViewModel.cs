@@ -137,12 +137,13 @@ namespace WpfApp1.ViewModels
                 var isUserValid = userRepository.Add(new System.Net.NetworkCredential(Username, Password));
                 if (isUserValid)
                 {
-                    ErrorMessage = "+ User succesfully created!";
-                    IsRegisterViewVisible = false;
+                    ErrorMessage = "* Something went wrong.";
                 }
                 else
                 {
-                    ErrorMessage = "* Something went wrong.";
+
+                    ErrorMessage = "+ User succesfully created!";
+                    IsRegisterViewVisible = false;
                 }
             }
         }
