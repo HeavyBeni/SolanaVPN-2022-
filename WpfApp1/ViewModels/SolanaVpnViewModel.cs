@@ -60,8 +60,8 @@ namespace WpfApp1.ViewModels
             //});
             //MinimizeWindowCommand = new ViewModelCommand(o => { Application.Current.MainWindow.WindowState = WindowState.Minimized; });
 
-            //ShowProtectionView = new ViewModelCommand(o => { CurrentView = SolanaVpnProtectionVM; });
-            //ShowSettingsView = new ViewModelCommand(o => { CurrentView = SolanaVpnSettingsVM; });
+            ShowProtectionView = new ViewModelCommand(o => { CurrentView = SolanaVpnProtectionVM; });
+            ShowSettingsView = new ViewModelCommand(o => { CurrentView = SolanaVpnSettingsVM; });
 
         }
     }
