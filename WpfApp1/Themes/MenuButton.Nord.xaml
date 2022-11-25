@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:extensions="clr-namespace:WpfApp1.Core">
     <Style TargetType="{x:Type RadioButton}">
 
         <Setter Property="Background"
@@ -25,7 +26,7 @@
                                 Margin="4">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="{TemplateBinding Padding}"
-                                       Text="Text"/>
+                                       Text="{Binding Path=(extensions:Extensions.Icon), RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                             <ContentPresenter VerticalAlignment="Center"
                                               Margin="0,0,0,2"/>
                         </StackPanel>
