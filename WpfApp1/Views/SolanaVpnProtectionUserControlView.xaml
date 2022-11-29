@@ -7,11 +7,9 @@
              xmlns:viewModel="clr-namespace:WpfApp1.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="#1E1E1E">
+             Background="#1E1E1E"
+             x:Name="ViewModels">
 
-    <Window.DataContext>
-        <viewModel:SolanaVpnProtectionViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -48,11 +46,12 @@
                    VerticalAlignment="Top"/>
 
         <Button Width="250"
-                Command="{Binding ConnectCommand}"
                 Height="45"
                 Content="Connect"
+                Foreground="White"
                 Grid.Row="1"
-                Style="{StaticResource ConnectButtonStyle}"/>
+                Style="{StaticResource ConnectButtonStyle}"
+                Command="{Binding ConnectCommand}"/>
 
     </Grid>
 </UserControl>
