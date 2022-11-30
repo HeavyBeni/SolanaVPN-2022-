@@ -33,6 +33,7 @@
         </Image>
 
         <ListView ItemsSource="{Binding Servers}"
+                  SelectedItem="{Binding SelectedServer, Mode=TwoWay}"
                   Width="250"
                   Margin="0,20,0,0"
                   Background="#252525"

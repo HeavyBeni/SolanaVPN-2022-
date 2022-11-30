@@ -32,14 +32,132 @@ namespace WpfApp1.ViewModels
         public SolanaVpnProtectionViewModel()
         {
             Servers = new ObservableCollection<ServerModel>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 1; i++)
             {
                 Servers.Add(new ServerModel
                 {
-                    Country = "NORWAY"
+                    ID = 1,
+                    
+                    Country = "USA 01",
+
+                    Server = "us1.vpnbook.com",
+
+                    Username= "vpnbook",
+
+                    Password = "twrszht",
+
+                    Image = "https://imgur.com/tX2FzGr.png"
+                }); ;
+
+                Servers.Add(new ServerModel
+                {
+                    ID = 2,
+
+                    Country = "USA 02",
+                    
+                    Server = "us2.vpnbook.com",
+
+                    Username = "vpnbook",
+
+                    Password = "twrszht",
+
+                    Image = "https://imgur.com/tX2FzGr.png"
                 });
 
+                Servers.Add(new ServerModel
+                {   
+                    ID= 3,
+
+                    Country = "CANADA 01",
+
+                    Server = "ca222.vpnbook.com",
+
+                    Username = "vpnbook",
+
+                    Password = "twrszht",
+
+                    Image = "https://i.imgur.com/irQNDth.png"
+                });
+
+                Servers.Add(new ServerModel
+                {
+                    ID = 4,
+
+                    Country = "CANADA 02",
+
+                    Server = "ca198.vpnbook.com",
+
+                    Username = "vpnbook",
+
+                    Password = "twrszht",
+
+                    Image = "https://i.imgur.com/irQNDth.png"
+                });
+
+                Servers.Add(new ServerModel
+                {
+                    ID = 5,
+
+                    Country = "FRANCE 01",
+
+                    Server = "fr1.vpnbook.com",
+
+                    Username = "vpnbook",
+
+                    Password = "twrszht",
+
+                    Image = "https://i.imgur.com/QqRSTNg.png"
+                });
+
+                Servers.Add(new ServerModel
+                {
+                    ID = 6,
+
+                    Country = "FRANCE 02",
+
+                    Server = "fr8.vpnbook.com",
+
+                    Username = "vpnbook",
+
+                    Password = "twrszht",
+
+                    Image = "https://i.imgur.com/QqRSTNg.png"
+                });
+
+                Servers.Add(new ServerModel
+                {
+                    ID = 7,
+
+                    Country = "GERMANY 01",
+
+                    Server = "de4.vpnbook.com",
+
+                    Username = "vpnbook",
+
+                    Password = "twrszht",
+
+                    Image = "https://i.imgur.com/PenzKfd.png"
+                });
+
+                Servers.Add(new ServerModel
+                {
+                    ID = 8,
+
+                    Country = "POLAND 01",
+
+                    Server = "PL226.vpnbook.com",
+
+                    Username = "vpnbook",
+
+                    Password = "twrszht",
+
+                    Image = "https://i.imgur.com/lfolGcA.png"
+                });
+
+
                 ConnectCommand = new ViewModelCommand(ExecuteConnectCommand);
+
+
 
             }
         }
@@ -72,28 +190,35 @@ namespace WpfApp1.ViewModels
 
         private void ExecuteConnectCommand(object obj)
         {
-            Status = "Connecting...";
-            var process = new Process();
-            process.StartInfo.FileName = "cmd.exe";
-            process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-            process.StartInfo.ArgumentList.Add(@"/c rasdial MyServer vpnbook twrszht /phonebook:./VPN/VPN.pbk");
-
-            process.Start();
-            MessageBox.Show("faul");
-            process.WaitForExit();
-            
-            switch (process.ExitCode)
+            Task.Run(() =>
             {
-                case 0:
-                    Console.WriteLine("SUccess!");
-                    break;
-                case 100:
-                    Console.WriteLine("Wrong Credentials!");
-                    break;
-                default:
-                    Console.WriteLine($"Error: {process.ExitCode}");
-                    break;
-            }
+                Status = "Connecting...";
+                var process = new Process();
+                process.StartInfo.FileName = "cmd.exe";
+                process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+                process.StartInfo.ArgumentList.Add(@"/c rasdial MyServer vpnbook twrszht /phonebook:./VPN/VPN.pbk");
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+
+                process.Start();
+                process.WaitForExit();
+
+                switch (process.ExitCode)
+                {
+                    case 0:
+                        Debug.WriteLine("Success!");
+                        Status = "Success";
+                        break;
+                    case 691:
+                        Debug.WriteLine("Wrong Credentials!");
+                        Status = "Wrong credentials!";
+                        break;
+                    default:
+                        Debug.WriteLine($"Error: {process.ExitCode}");
+                        Status = $"Error: {process.ExitCode}";
+                        break;
+                }
+            });
         }
     }
 }

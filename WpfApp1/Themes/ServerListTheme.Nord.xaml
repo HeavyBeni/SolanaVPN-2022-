@@ -31,10 +31,11 @@
                                 Background="{TemplateBinding Background}">
                         <Image Width="34" 
                                RenderOptions.BitmapScalingMode="Fant"
-                               Source="https://imgur.com/tX2FzGr.png"/>
+                               Source="{Binding Image}"/>
                         <TextBlock Text="{Binding Country}"
                                    Margin="4,0,0,0"
                                    VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding ID}"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -53,6 +54,8 @@
                      Value="True">
                 <Setter Property="Background"
                         Value="#1E1E1E"/>
+                
+
             </Trigger>
         </Style.Triggers>
     </Style>
