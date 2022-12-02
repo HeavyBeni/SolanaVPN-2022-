@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Security;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,19 +18,62 @@ namespace WpfApp1.ViewModels
     internal class SolanaVpnProtectionViewModel : ViewModelBase
     {
         public ObservableCollection<ServerModel> Servers { get; set; }
-        private string _Status;
-
+        
+        private string _status;
         public string Status
         {
-            get { return _Status; }
+            get { return _status; }
             set 
             { 
-                _Status = value;
+                _status = value;
                 OnPropertyChanged(nameof(Status));
             }
         }
 
-        public ICommand ConnectCommand { get; set; }
+
+        private bool _connected;
+        public bool Connected
+        {
+            get { return _connected; }
+            set
+            {
+                _connected = value;
+                OnPropertyChanged(nameof(_connected));
+            }
+        }
+
+
+        private string _conDisconContent;
+        public string ConDisConContent
+        {
+            get { return _conDisconContent; }
+            set
+            {
+                _conDisconContent = value;
+                OnPropertyChanged(nameof(ConDisConContent));
+            }
+        }
+
+
+        private ServerModel _selectedServerModel;
+        public ServerModel SelectedServerModel
+        {
+            get { return _selectedServerModel; }
+            set
+            {
+                if (_selectedServerModel != value)
+                {
+                    _selectedServerModel = value;
+                    OnPropertyChanged(nameof(SelectedServerModel));
+                }
+            }
+        }
+
+
+
+        public ICommand ConnectDisconnectCommand { get; set; }
+
+
         public SolanaVpnProtectionViewModel()
         {
             Servers = new ObservableCollection<ServerModel>();
@@ -155,16 +200,32 @@ namespace WpfApp1.ViewModels
                 });
 
 
-                ConnectCommand = new ViewModelCommand(ExecuteConnectCommand);
-
-
 
             }
+
+            ConnectDisconnectCommand = new ViewModelCommand(ExecuteConnectDisconnectCommand);
+
+            ConDisConContent = "Connect";
+
+            Status = "Standby";
+
+
+        
+
+
         }
 
+        private void SelectedServer(object sender, EventArgs e)
+        {
+            if (SelectedServer != null)
+            {
+                Status = "ok";
+            }
+        }
+        
         private void ServerBuilder()
         {
-            var address = "us1.vpnbook.com";
+            var address = SelectedServerModel.Server;
             var FolderPath = $"{Directory.GetCurrentDirectory()}/VPN";
             var PbkPath = $"{FolderPath}/{address}.pbk";
 
@@ -188,37 +249,61 @@ namespace WpfApp1.ViewModels
             
         }
 
-        private void ExecuteConnectCommand(object obj)
+        private void ExecuteConnectDisconnectCommand(object obj)
         {
-            Task.Run(() =>
+            if (ConDisConContent == "Connect")
             {
-                Status = "Connecting...";
+                Task.Run(() =>
+                {
+                    Task.Run(ServerBuilder);
+                    Status = "Connecting...";
+
+                    var process = new Process();
+                    process.StartInfo.FileName = "cmd.exe";
+                    process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+                    process.StartInfo.ArgumentList.Add($@"/c rasdial MyServer {SelectedServerModel.Username} {SelectedServerModel.Password} /phonebook:./VPN/{SelectedServerModel.Server}.pbk");
+                    //process.StartInfo.UseShellExecute = false;
+                    //process.StartInfo.CreateNoWindow = true;
+
+                    process.Start();
+                    process.WaitForExit();
+
+                    switch (process.ExitCode)
+                    {
+                        case 0:
+                            Debug.WriteLine("Success!");
+                            ConDisConContent = "Disconnect";
+                            Status = "Connected";
+                            break;
+                        case 691:
+                            Debug.WriteLine("Wrong Credentials!");
+                            Status = "Wrong credentials!";
+                            break;
+                        default:
+                            Debug.WriteLine($"Error: {process.ExitCode}");
+                            Status = $"Error: {process.ExitCode}";
+                            break;
+                    }
+                });
+            }
+            else
+            {
+                Status = "Disconnectiong...";
                 var process = new Process();
                 process.StartInfo.FileName = "cmd.exe";
                 process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
-                process.StartInfo.ArgumentList.Add(@"/c rasdial MyServer vpnbook twrszht /phonebook:./VPN/VPN.pbk");
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.ArgumentList.Add(@"/c rasdial /d");
 
                 process.Start();
                 process.WaitForExit();
 
-                switch (process.ExitCode)
-                {
-                    case 0:
-                        Debug.WriteLine("Success!");
-                        Status = "Success";
-                        break;
-                    case 691:
-                        Debug.WriteLine("Wrong Credentials!");
-                        Status = "Wrong credentials!";
-                        break;
-                    default:
-                        Debug.WriteLine($"Error: {process.ExitCode}");
-                        Status = $"Error: {process.ExitCode}";
-                        break;
-                }
-            });
+                Status = "Standby";
+                ConDisConContent = "Connect";
+                
+            }
+            
         }
+
+
     }
 }

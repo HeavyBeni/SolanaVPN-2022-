@@ -36,7 +36,10 @@
                                    Margin="4,0,0,0"
                                    VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding ID}"/>
+
                     </StackPanel>
+                    
+                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -54,6 +57,7 @@
                      Value="True">
                 <Setter Property="Background"
                         Value="#1E1E1E"/>
+
                 
 
             </Trigger>
