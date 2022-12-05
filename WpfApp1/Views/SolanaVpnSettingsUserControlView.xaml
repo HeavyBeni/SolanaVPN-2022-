@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.Views"
+             xmlns:viewModel="clr-namespace:WpfApp1.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewModel:SolanaVpnProtectionViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#1E1E1E">
@@ -13,15 +15,15 @@
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
 
-        <Image Source="https://i.imgur.com/Lo9aynf.jpg"
+        <Image Source="https://imgur.com/bx3bBLj.png"
                RenderOptions.BitmapScalingMode="Fant"
                Grid.RowSpan="2">
             <Image.OpacityMask>
-                <LinearGradientBrush EndPoint="0.5, 01"
+                <LinearGradientBrush EndPoint="0.5, 1"
                                      StartPoint="0.5, 0">
                     <GradientStop Color="Black"/>
                     <GradientStop Color="Transparent"
-                                  Offset="1.1"/>
+                                  Offset="1"/>
                 </LinearGradientBrush>
             </Image.OpacityMask>
             <Image.Effect>
@@ -30,7 +32,6 @@
         </Image>
 
         <ListView ItemsSource="{Binding Servers}"
-                  SelectedItem="{Binding SelectedServerModel}"
                   Width="250"
                   Margin="0,20,0,0"
                   Background="#252525"
@@ -39,6 +40,12 @@
                   Name="ASD">
 
         </ListView>
+
+        <TextBlock Text="{Binding Status}"
+                   Foreground="White"
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"/>
 
 
 

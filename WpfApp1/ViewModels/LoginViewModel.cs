@@ -11,6 +11,8 @@ using WpfApp1.Repositories;
 using System.Threading;
 using System.Security.Principal;
 using WpfApp1.Views;
+using Microsoft.VisualBasic;
+using System.ComponentModel;
 
 namespace WpfApp1.ViewModels
 {
@@ -75,6 +77,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        public UserModel User { get; set; }
+
+
         // Commands
 
         public ICommand LoginCommand { get; }
@@ -91,6 +96,8 @@ namespace WpfApp1.ViewModels
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
+
+            User = new UserModel();
         }
         
 
@@ -112,7 +119,9 @@ namespace WpfApp1.ViewModels
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(Username), null);
-                IsLoginViewVisible = false;
+                userRepository.GetByUsername(Username);
+                User.Username = Username;
+                ErrorMessage = User.Username;
 
 
             }

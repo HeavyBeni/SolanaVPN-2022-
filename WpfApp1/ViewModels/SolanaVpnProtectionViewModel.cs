@@ -199,6 +199,18 @@ namespace WpfApp1.ViewModels
                     Image = "https://i.imgur.com/lfolGcA.png"
                 });
 
+                Servers.Add(new ServerModel
+                {
+                    ID = 9,
+                    Country = "Coming Soon"
+                });
+
+                Servers.Add(new ServerModel
+                {
+                    ID = 10,
+                    Country = "Coming Soon"
+                });
+
 
 
             }

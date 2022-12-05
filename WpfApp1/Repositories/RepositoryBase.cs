@@ -12,7 +12,7 @@ namespace WpfApp1.Repositories
         private readonly string _connectionString;
         public RepositoryBase()
         {
-            _connectionString = "Data Source=solanavpn.database.windows.net;Initial Catalog=SolanaLoginSQL;Persist Security Info=True;User ID=benjamin;Password=Lisboa46";
+            _connectionString = "Data Source=(localdb)\\local;Initial Catalog=logindb;Integrated Security=True";
         }
         protected SqlConnection GetConnection()
         {

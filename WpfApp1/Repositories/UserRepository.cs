@@ -67,10 +67,10 @@ namespace WpfApp1.Repositories
                 connection.Close();
 
                 // Display
-                SolanaVpnView vpn = new SolanaVpnView();
-                LoginView login = new LoginView();
-                login.Close();
-                vpn.Show();
+                //SolanaVpnView vpn = new SolanaVpnView();
+                //LoginView login = new LoginView();
+                //login.Close();
+                //vpn.Show();
 
             }
             return validUser;
