@@ -7,6 +7,7 @@ using System.Windows;
 
 namespace WpfApp1.Core
 {
+    // Extension for Icons that are used in VpnView..
     class Extensions
     {
         public static readonly DependencyProperty Icon =

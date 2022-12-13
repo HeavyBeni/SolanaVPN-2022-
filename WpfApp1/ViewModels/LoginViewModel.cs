@@ -16,6 +16,7 @@ using System.ComponentModel;
 
 namespace WpfApp1.ViewModels
 {
+    
     public class LoginViewModel : ViewModelBase
     {
         // Fields
@@ -77,32 +78,25 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        public UserModel User { get; set; }
-
 
         // Commands
-
         public ICommand LoginCommand { get; }
-        public ICommand RecoverPasswordCommand { get; }
-        public ICommand ShowPasswordCommand { get; }
-        public ICommand RememberPasswordCommand { get; }
-
-
 
 
         // Constructors
         public LoginViewModel()
         {
+            // 
             userRepository = new UserRepository();
-            LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-            RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
 
-            User = new UserModel();
+            // Creating LoginCommand from ViewModelCommand structure
+            LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         }
         
 
         private bool CanExecuteLoginCommand(object obj)
         {
+            //
             bool validData;
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 ||
                 Password == null || Password.Length < 3)
@@ -117,25 +111,15 @@ namespace WpfApp1.ViewModels
             var isUserValid = userRepository.AuthenticateUser(new System.Net.NetworkCredential(Username, Password));
             if (isUserValid)
             {
-                Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
-                userRepository.GetByUsername(Username);
-                User.Username = Username;
-                ErrorMessage = User.Username;
-
-
+                // The Display should be changed by now if the Authentication went trough,
+                // if LoginView is still visable, something went wrong.
+                ErrorMessage = "* Access gained, something went wrong...";
             }
             else
             {
+                // AuthenicateUser went wrong, probably Invalid credentials
                 ErrorMessage = "* Invalid username or password";
             }
         }
-
-        private void ExecuteRecoverPassCommand(string username, string email)
-        {
-            throw new NotImplementedException();
-        }
-
     }
-
 }

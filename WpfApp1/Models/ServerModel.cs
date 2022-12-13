@@ -1,5 +1,7 @@
 ﻿ namespace WpfApp1.Models
 {
+
+    // Servermodel, the used servers are stored in here.
     public class ServerModel
     {
         public int ID { get; set; }

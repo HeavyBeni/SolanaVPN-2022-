@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
+    // Not used yet but will be used in the near future.
     public class UserModel
     {
         public string Id { get; set; }

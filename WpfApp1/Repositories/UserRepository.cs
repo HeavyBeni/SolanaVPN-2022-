@@ -12,10 +12,7 @@ using WpfApp1.Views;
 namespace WpfApp1.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
-    {
-
-        
-        
+    {      
         // Creating a User, sql connection string is located at ReposityBase
         public bool Add(NetworkCredential credential)
         {
@@ -43,7 +40,6 @@ namespace WpfApp1.Repositories
                 login.Show();
             }
             return userCreated;
-
         }
         
         // Authenticating User
@@ -67,10 +63,10 @@ namespace WpfApp1.Repositories
                 connection.Close();
 
                 // Display
-                //SolanaVpnView vpn = new SolanaVpnView();
-                //LoginView login = new LoginView();
-                //login.Close();
-                //vpn.Show();
+                SolanaVpnView vpn = new SolanaVpnView();
+                LoginView login = new LoginView();
+                login.Close();
+                vpn.Show();
 
             }
             return validUser;
@@ -109,46 +105,25 @@ namespace WpfApp1.Repositories
 
         }
 
+        // Not implemented yet but is under development and will be user in the near future
         public void Edit(UserModel userModel)
         {
             throw new NotImplementedException();
         }
+
+        // Not implemented yet but is under development and will be user in the near future
         public IEnumerable<UserModel> GetByAll()
         {
             throw new NotImplementedException();
         }
+
+        // Not implemented yet but is under development and will be user in the near future
         public UserModel GetById(int id)
         {
             throw new NotImplementedException();
         }
-        public UserModel GetByUsername(string username)
-        {
-            UserModel user = null;
-            using (var connection = GetConnection())
-            using (var command = new SqlCommand())
-            {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "select *from [User] where username=@username";
-                command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
-                using (var reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        user = new UserModel()
-                        {
-                            Id = reader[0].ToString(),
-                            Username = reader[1].ToString(),
-                            Password = string.Empty,
-                            Name = reader[3].ToString(),
-                            LastName = reader[4].ToString(),
-                            Email = reader[5].ToString(),
-                        };
-                    }
-                }
-            }
-            return user;
-        }
+
+        // Not implemented yet but is under development and will be user in the near future
         public void Remove(int id)
         {
             throw new NotImplementedException();

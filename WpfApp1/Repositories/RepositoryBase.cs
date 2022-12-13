@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 
 namespace WpfApp1.Repositories
 {
+    // Connection to the Database that is used by UserRepository...
     public abstract class RepositoryBase
     {
         private readonly string _connectionString;

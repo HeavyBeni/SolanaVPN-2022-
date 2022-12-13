@@ -19,16 +19,41 @@
         <viewModel:SolanaVpnViewModel/>
     </Window.DataContext>
 
-    <DockPanel Background="#1E1E1E"
-               Margin="7">
+    <Border CornerRadius="10">
+        <Border CornerRadius="10"
+                    Opacity="1"
+                    BorderThickness="4">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#1E1E1E" Offset="0"/>
+                    <GradientStop Color="#1E1E1E" Offset="0.75"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <DockPanel Background="#1E1E1E"
+               Margin="7"
+               >
 
         <Border Height="28"
-                Background="#252525"
                 DockPanel.Dock="Top">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
 
 
 
-            <Grid>
+                    <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="100"/>
@@ -65,8 +90,14 @@
 
         <!--MenuBar Left Side-->
         <Border Width="48"
-                HorizontalAlignment="Left"
-                Background="#252525">
+                HorizontalAlignment="Left">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Border.Style>
                 <Style>
                     <Style.Triggers>
@@ -115,7 +146,8 @@
                              FontWeight="Normal"
                              Foreground="LightGray"/>
 
-                <RadioButton Content="Settings"
+
+                        <RadioButton Content="Settings"
                              extension:Extensions.Icon="❁"
                              Padding="7.6,03.5,10,0"
                              FontSize="16"
@@ -129,4 +161,6 @@
         <ContentPresenter Content="{Binding CurrentView}"/>
 
     </DockPanel>
+        </Border>
+    </Border>
 </Window>
