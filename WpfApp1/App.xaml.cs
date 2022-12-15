@@ -17,10 +17,10 @@ namespace WpfApp1
     {
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
-            //var loginView = new LoginView();
+            var loginView = new LoginView();
             //var registerView = new RegisterView();
-            var vpnView = new SolanaVpnView();
-            vpnView.Show();
+            //var vpnView = new SolanaVpnView();
+            loginView.Show();
 
             
 

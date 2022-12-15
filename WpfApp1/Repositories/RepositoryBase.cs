@@ -13,7 +13,7 @@ namespace WpfApp1.Repositories
         private readonly string _connectionString;
         public RepositoryBase()
         {
-            _connectionString = "Data Source=(localdb)\\local;Initial Catalog=logindb;Integrated Security=True";
+            _connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\benjamin\\Source\\Repos\\SolanaVPN-2022-\\WpfApp1\\Database1.mdf;Integrated Security=True";
         }
         protected SqlConnection GetConnection()
         {

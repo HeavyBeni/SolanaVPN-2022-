@@ -25,7 +25,7 @@ namespace WpfApp1.Repositories
                 // Opening connection and inserting credentials
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO User1(username, password) VALUES(@username, @password)";
+                command.CommandText = "INSERT INTO Table(username, password) VALUES(@username, @password)";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 
@@ -54,7 +54,7 @@ namespace WpfApp1.Repositories
                 // Opening connection and checking for credential in database
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select *from [user1] where username=@username and [password]=@password";
+                command.CommandText = "select *from [Table] where username=@username and [password]=@password";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 
@@ -84,7 +84,7 @@ namespace WpfApp1.Repositories
                 
                 // Opening connection and checking for already existing username
                 connection.Open();
-                SqlCommand check_User_Name = new SqlCommand("SELECT COUNT(*) FROM [User1] WHERE ([Username] = @username)", connection);
+                SqlCommand check_User_Name = new SqlCommand("SELECT COUNT(*) FROM [Table] WHERE ([Username] = @username)", connection);
                 check_User_Name.Parameters.AddWithValue("@username", username);
                 
                 // Giving a value to UserExist if it founds a match
