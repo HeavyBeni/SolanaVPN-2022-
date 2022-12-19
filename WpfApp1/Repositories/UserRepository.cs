@@ -44,7 +44,7 @@ namespace WpfApp1.Repositories
             return userCreated;
         }
         
-        // Authenticating User
+        // Authenticating Usere
         public bool AuthenticateUser(NetworkCredential credential)
         {
             // Needs to return a value
