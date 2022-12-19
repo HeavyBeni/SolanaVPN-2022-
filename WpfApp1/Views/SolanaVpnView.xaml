@@ -15,10 +15,12 @@
         ResizeMode="CanResize"
         MouseDown="Window_MouseDown">
 
+    <!--Making binding to SolanaVpnViewModel-->
     <Window.DataContext>
         <viewModel:SolanaVpnViewModel/>
     </Window.DataContext>
 
+    <!--Setting Border and gradient border brush-->
     <Border CornerRadius="10">
         <Border CornerRadius="10"
                     Opacity="1"
@@ -30,7 +32,6 @@
                     <GradientStop Color="#8A16C1" Offset="1"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
-
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                     <GradientStop Color="#1E1E1E" Offset="0"/>
@@ -38,21 +39,18 @@
                 </LinearGradientBrush>
             </Border.Background>
             <DockPanel Background="#1E1E1E"
-               Margin="7"
-               >
+                       Margin="7">
 
+        <!--Titlebar at the top with buttons, creating gradientbrush for the background of it-->
         <Border Height="28"
                 DockPanel.Dock="Top">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#462AD8" Offset="0"/>
-                    <GradientStop Color="#DA34AE" Offset="0.75"/>
-                    <GradientStop Color="#8A16C1" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-
-
-
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#462AD8" Offset="0"/>
+                            <GradientStop Color="#DA34AE" Offset="0.75"/>
+                            <GradientStop Color="#8A16C1" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
                     <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -67,72 +65,69 @@
                            HorizontalAlignment="Center"
                            Margin="100,0,0,0"/>
 
-                <StackPanel Grid.Column="1"
+                        <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Margin="0,0,4,0">
-                    <!--Buttons Mini, Full, Leave, Coded in Xaml.cs-->
-                    <Button Content="-"
+                            <!--Buttons Mini, Full, Leave, Coded in Xaml.cs-->
+                            <Button Content="-"
                             Padding="0,0,0,2"
                             Click="btnMinimize_Click"/>
-                    <Button Content="🗖"
+                            <Button Content="🗖"
                             Padding="0,0,0,3"
                             Click="btnMaximize_Click"/>
-                    <Button Content="X"
+                            <Button Content="X"
                             Click="btnExit_Click"
                             Padding="0,0,0,2"/>
-
-
-                </StackPanel>
-
-            </Grid>
+                        </StackPanel>
+                    </Grid>
         </Border>
 
         <!--MenuBar Left Side-->
-        <Border Width="48"
+                <Border Width="48"
                 HorizontalAlignment="Left">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#462AD8" Offset="0"/>
-                    <GradientStop Color="#DA34AE" Offset="0.75"/>
-                    <GradientStop Color="#8A16C1" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-            <Border.Style>
-                <Style>
-                    <Style.Triggers>
-                        <!--Open On MouseEnter-->
-                        <EventTrigger RoutedEvent="Border.MouseEnter">
-                            <EventTrigger.Actions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Width)"
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#462AD8" Offset="0"/>
+                            <GradientStop Color="#DA34AE" Offset="0.75"/>
+                            <GradientStop Color="#8A16C1" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Border.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <!--Open On MouseEnter-->
+                                <EventTrigger RoutedEvent="Border.MouseEnter">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(Border.Width)"
                                                          To="120"
                                                          Duration="0:0:0.1"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
 
-                        <!--Close on MouseLeave-->
-                        <EventTrigger RoutedEvent="Border.MouseLeave">
-                            <EventTrigger.Actions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Width)"
+                                <!--Close on MouseLeave-->
+                                <EventTrigger RoutedEvent="Border.MouseLeave">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(Border.Width)"
                                                          To="48"
                                                          Duration="0:0:0.1"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
-                    </Style.Triggers>
-                </Style>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
 
-            </Border.Style>
-
-            <StackPanel>
-                <RadioButton Content="VPN"
+                    <!--Radiobuttons for the different views, VPN and Settings-->
+                    <StackPanel>
+                        <RadioButton Content="VPN"
                              extension:Extensions.Icon="&#128737;"
                              FontSize="16"
                              Padding="7.6,3.5,8,0"
@@ -140,12 +135,10 @@
                              Foreground="LightGray"
                              IsChecked="True"
                              Command="{Binding ShowProtectionView}"/>
-
-                <RadioButton Content="&lt;/&gt;"
+                        <RadioButton Content="&lt;/&gt;"
                              FontSize="16"
                              FontWeight="Normal"
                              Foreground="LightGray"/>
-
 
                         <RadioButton Content="Settings"
                              extension:Extensions.Icon="❁"
@@ -154,13 +147,12 @@
                              FontWeight="Normal"
                              Foreground="LightGray"
                              Command="{Binding ShowSettingsView}"/>
-            </StackPanel>
-
-        </Border>
-
-        <ContentPresenter Content="{Binding CurrentView}"/>
-
-    </DockPanel>
+                    </StackPanel>
+                </Border>
+                
+                <!--Binding to ViewModel, what will be showed-->
+                <ContentPresenter Content="{Binding CurrentView}"/>
+            </DockPanel>
         </Border>
     </Border>
 </Window>

@@ -17,14 +17,15 @@
 
             </ResourceDictionary.MergedDictionaries>
 
+            <!--Source to Protection View-->
             <DataTemplate DataType="{x:Type vms:SolanaVpnProtectionViewModel}">
                 <view:SolanaVpnProtectionUserControlView/>
             </DataTemplate>
 
+            <!--Source to Setting View-->
             <DataTemplate DataType="{x:Type vms:SolanaVpnSettingsViewModel}">
                 <view:SolanaVpnSettingsUserControlView/>
             </DataTemplate>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

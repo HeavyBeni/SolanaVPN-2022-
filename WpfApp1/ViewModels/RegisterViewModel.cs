@@ -31,6 +31,8 @@ namespace WpfApp1.ViewModels
 
         private IUserRepository userRepository;
 
+
+        // Properties
         public string Username
         {
             get { return _username; }
@@ -41,7 +43,6 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        // Properties
         public string Password
         {
             get

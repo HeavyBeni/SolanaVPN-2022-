@@ -14,10 +14,12 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
 
+    <!--Relating to databinding location, in this case it is in LoginViewmodel since this is LoginView-->
     <Window.DataContext>
         <viewModel:LoginViewModel/>
     </Window.DataContext>
 
+    <!--Visibility true or false-->
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
@@ -26,17 +28,13 @@
         <Binding Path="IsLoginViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
     </Window.Visibility>
 
+    <!--Setting border and background-->
     <Border CornerRadius="12">
-        
-        
-        
         <Border.Background>
             <ImageBrush ImageSource="/Images/back-image.jpg"
                         Stretch="None"></ImageBrush>
         </Border.Background>
-        
-        
-        
+        <!--Gradient border-->
         <Border     CornerRadius="10"
                     Opacity="0.9"
                     BorderThickness="4">
@@ -47,20 +45,17 @@
                     <GradientStop Color="#8A16C1" Offset="1"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
-
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                     <GradientStop Color="#060531" Offset="0"/>
                     <GradientStop Color="#1b1448" Offset="0.75"/>
                 </LinearGradientBrush>
             </Border.Background>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -68,7 +63,7 @@
                         <ColumnDefinition Width="25"/>
                         <ColumnDefinition Width="5"/>
                     </Grid.ColumnDefinitions>
-
+                    <!--Setting Title-->
                     <TextBlock Text="LOG IN"
                                Foreground="DarkGray"
                                FontSize="10"
@@ -76,7 +71,7 @@
                                Grid.Column="0"
                                VerticalAlignment="Center"
                                Margin="10,0,0,0"/>
-
+                    <!--Buttons and themes-->
                     <Button x:Name="btnMinimize"
                             Background="#28AEED"
                             BorderThickness="0"
@@ -97,7 +92,6 @@
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
-
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Width="18" Height="18"
@@ -108,9 +102,7 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
-
                     </Button>
-
                     <Button x:Name="btnClose"
                             Background="#DA34AE"
                             BorderThickness="0"
@@ -131,7 +123,6 @@
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
-
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Width="18" Height="18"
@@ -143,25 +134,20 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
-
-
                 </Grid>
-
+                <!--Stackpanel for content, logo, text, input boxes and buttons-->
                 <StackPanel Width="250"
                             Grid.Row="2"
                             Orientation="Vertical"
                             Margin="0,35,0,0">
                     <Image Source="/Images/Logo.png"
                            Width="100" Height="100"/>
-
                     <TextBlock Text="Solana VPN"
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
-
                     <TextBlock Text="* Protection Yourself"
                                Foreground="LightGray"
                                FontSize="12"
@@ -170,14 +156,14 @@
                                TextWrapping="Wrap"
                                TextAlignment="Center"
                                Margin="0,5,0,0"/>
-
                     <TextBlock Text="Username"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Margin="0,35,0,0"/>
-
+                    
+                    <!--Binding Username to ViewModel-->
                     <TextBox x:Name="txtUser"
                              Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
@@ -191,26 +177,26 @@
                              VerticalAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
-
                         <TextBox.Background>
                             <ImageBrush ImageSource="/Images/user-icon.png"
                                         Stretch="None"
                                         AlignmentX="Left"/>
                         </TextBox.Background>
                     </TextBox>
-
+                    
+                    <!--Binding Passwordbox to ViewModel-->
                     <TextBlock Text="Password"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Margin="0,15,0,0"/>
-
                     <customcontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Height="18"
                                                         Margin="0,5,0,0">
                     </customcontrols:BindablePasswordBox>
-
+                    
+                    <!--Field for errormessage-->
                     <TextBlock Text="{Binding ErrorMessage}"
                                Foreground="#D7596D"
                                FontSize="12"
@@ -218,7 +204,8 @@
                                FontFamily="Montserrat"
                                Margin="0,10,0,0"
                                TextWrapping="Wrap"/>
-
+                    
+                    <!--Binding LoginButton-->
                     <Button x:Name="btnLogin"
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"
@@ -229,7 +216,6 @@
                             Cursor="Hand"
                             Grid.Column="2"
                             Margin="0,30,0,0">
-
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#462AD8"/>
@@ -240,7 +226,6 @@
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
-
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Width="150" Height="40"
@@ -252,7 +237,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
@@ -263,8 +247,7 @@
                                FontWeight="Medium"
                                FontFamily="Montserrat"/>
 
-
-
+                        <!--Reset Password Comming Soon-->
                         <TextBlock Text="Reset"
                                Foreground="White"
                                FontSize="12"
@@ -272,9 +255,9 @@
                                FontFamily="Montserrat"
                                Cursor="Hand"
                                Margin="8,0,0,0"/>
-                        
                     </StackPanel>
-
+                    
+                    <!--Button to open Register Page-->
                     <Button x:Name="btnReg"
                             
                             BorderThickness="0"
@@ -288,18 +271,10 @@
                             Grid.Column="2"
                             Margin="0,10,0,0"
                             Click="btnRegister_Click" 
-                            Width="48"
-                            
-                            >
-                        
+                            Width="48">
                     </Button>
-
                 </StackPanel>
-
-
             </Grid>
-    
+        </Border>
     </Border>
-    </Border>
-
 </Window>

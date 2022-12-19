@@ -10,40 +10,15 @@ using WpfApp1.Views;
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    // Interaction logic for App.xaml
     public partial class App : Application
     {
+        
+        // Starting Application
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
             var loginView = new LoginView();
-            //var registerView = new RegisterView();
-            //var vpnView = new SolanaVpnView();
             loginView.Show();
-
-            
-
-            //loginView.IsVisibleChanged += (s, ev) =>
-            //{
-            //    if (loginView.IsVisible == false && loginView.IsLoaded)
-            //    {
-            //        vpnView.Show();
-            //        loginView.Close();
-            //    }
-            //};
-
-            //registerView.IsVisibleChanged += (s, ev) =>
-            //{
-            //    if (registerView.IsVisible == false && registerView.IsLoaded)
-            //    {
-            //        loginView.Show();
-            //        registerView.Close();
-            //    }
-            //};
-
-            //if (IsLogin)
-
         }
     }
 }

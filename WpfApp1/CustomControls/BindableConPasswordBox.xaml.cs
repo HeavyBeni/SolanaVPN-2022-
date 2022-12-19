@@ -16,9 +16,8 @@ using System.Windows.Shapes;
 
 namespace WpfApp1.CustomControls
 {
-    /// <summary>
-    /// Interaction logic for BindableConPasswordBox.xaml
-    /// </summary>
+
+    // In XAML you cannot bind password since it is secure so you need to bind the whole passwordbox.
     public partial class BindableConPasswordBox : UserControl
     {
         public static readonly DependencyProperty PasswordProperty =
@@ -35,6 +34,7 @@ namespace WpfApp1.CustomControls
             txtConPassword.PasswordChanged += OnPasswordChanged;
         }
 
+        // If password intput changed, make it change
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
             Password = txtConPassword.Password;

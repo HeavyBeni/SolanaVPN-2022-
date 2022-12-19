@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
+    
+    //IUserRepository Models that are user in Repositories.
     public interface IUserRepository
     {
-        
         bool AuthenticateUser(NetworkCredential credential);
         bool IfTakenUsername(string username);
         bool Add(NetworkCredential credential);
@@ -17,6 +18,5 @@ namespace WpfApp1.Models
         void Remove(int id);
         UserModel GetById(int id);
         IEnumerable<UserModel> GetByAll();
-        //...
     }
 }

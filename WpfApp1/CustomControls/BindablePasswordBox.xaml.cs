@@ -16,9 +16,8 @@ using System.Windows.Shapes;
 
 namespace WpfApp1.CustomControls
 {
-    /// <summary>
-    /// Interaction logic for BindablePasswordBox.xaml
-    /// </summary>
+
+    // In XAML you cannot bind password since it is secure so you need to bind the whole passwordbox.
     public partial class BindablePasswordBox : UserControl
     {
         public static readonly DependencyProperty PasswordProperty =

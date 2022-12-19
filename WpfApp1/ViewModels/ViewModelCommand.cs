@@ -7,6 +7,8 @@ using System.Windows.Input;
 
 namespace WpfApp1.ViewModels
 {
+    // Definition of commands used by ViewModels, RegisterCommand and LoginCommand
+
     public class ViewModelCommand : ICommand
     {
         //Fields

@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--Theme for connectionbutton in VPN-->
     <Style TargetType="{x:Type Button}" x:Key="ConnectButtonStyle">
         <Setter Property="Background" Value="#462AD8"/>
         <Setter Property="Foreground" Value="LightGray"/>

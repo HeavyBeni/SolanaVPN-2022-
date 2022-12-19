@@ -11,6 +11,8 @@ namespace WpfApp1.Repositories
     public abstract class RepositoryBase
     {
         private readonly string _connectionString;
+        
+        // Connectionstring used in UserRepository for acessing database...
         public RepositoryBase()
         {
             _connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\benjamin\\Source\\Repos\\SolanaVPN-2022-\\WpfApp1\\Database1.mdf;Integrated Security=True";

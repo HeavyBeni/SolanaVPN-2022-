@@ -86,7 +86,7 @@ namespace WpfApp1.ViewModels
         // Constructors
         public LoginViewModel()
         {
-            // 
+            // Creating link for UserRepository ( AuthenticateUser )
             userRepository = new UserRepository();
 
             // Creating LoginCommand from ViewModelCommand structure
@@ -96,7 +96,7 @@ namespace WpfApp1.ViewModels
 
         private bool CanExecuteLoginCommand(object obj)
         {
-            //
+            // Checking if Login can be executed
             bool validData;
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 ||
                 Password == null || Password.Length < 3)

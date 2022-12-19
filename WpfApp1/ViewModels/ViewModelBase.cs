@@ -10,6 +10,8 @@ using System.ComponentModel;
 
 namespace WpfApp1.ViewModel
 {
+    // Changes property when it changes, used by ViewModels
+
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

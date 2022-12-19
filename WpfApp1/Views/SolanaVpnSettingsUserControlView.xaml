@@ -9,15 +9,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#1E1E1E">
+    
+    <!--Making grids for this page-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
 
+        <!--Setting background-->
         <Image Source="https://imgur.com/bx3bBLj.png"
                RenderOptions.BitmapScalingMode="Fant"
                Grid.RowSpan="2">
+            
+            <!--Setting overlay color and blur-->
             <Image.OpacityMask>
                 <LinearGradientBrush EndPoint="0.5, 1"
                                      StartPoint="0.5, 0">
@@ -31,23 +36,14 @@
             </Image.Effect>
         </Image>
 
-        <ListView ItemsSource="{Binding Servers}"
+        <!--Settings Page is under development but the content will come here-->
+        <ListView ItemsSource="{Binding xxx}"
                   Width="250"
                   Margin="0,20,0,0"
                   Background="#252525"
                   BorderThickness="0"
                   ScrollViewer.CanContentScroll="False"
-                  Name="ASD">
-
+                  Name="ListView_Settings">
         </ListView>
-
-        <TextBlock Text="{Binding Status}"
-                   Foreground="White"
-                   Grid.Row="1"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"/>
-
-
-
     </Grid>
 </UserControl>

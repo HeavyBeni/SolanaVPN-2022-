@@ -17,8 +17,10 @@ namespace WpfApp1.ViewModels
 {
     internal class SolanaVpnProtectionViewModel : ViewModelBase
     {
+        // ServerModel
         public ObservableCollection<ServerModel> Servers { get; set; }
         
+        // Properties
         private string _status;
         public string Status
         {
@@ -70,12 +72,13 @@ namespace WpfApp1.ViewModels
         }
 
 
-
+        // Commands
         public ICommand ConnectDisconnectCommand { get; set; }
 
-
+        // Constructors
         public SolanaVpnProtectionViewModel()
         {
+            // Adding the servers to servermodel
             Servers = new ObservableCollection<ServerModel>();
             for (int i = 0; i < 1; i++)
             {
@@ -215,16 +218,15 @@ namespace WpfApp1.ViewModels
 
             }
 
+            // Command
+            
             ConnectDisconnectCommand = new ViewModelCommand(ExecuteConnectDisconnectCommand);
-
+            
+            // Setting Connectbutton Content
             ConDisConContent = "Connect";
-
+            
+            // Satus
             Status = "Standby";
-
-
-        
-
-
         }
 
         private void SelectedServer(object sender, EventArgs e)
@@ -235,6 +237,7 @@ namespace WpfApp1.ViewModels
             }
         }
         
+        //Building the server that the user can connect to
         private void ServerBuilder()
         {
             var address = SelectedServerModel.Server;
@@ -261,25 +264,29 @@ namespace WpfApp1.ViewModels
             
         }
 
+        // Executing connection or disconnection
         private void ExecuteConnectDisconnectCommand(object obj)
         {
             if (ConDisConContent == "Connect")
             {
                 Task.Run(() =>
                 {
+                    // Starting Connection
                     Task.Run(ServerBuilder);
                     Status = "Connecting...";
 
+                    // Connection with cmd to the VPN Adress
                     var process = new Process();
                     process.StartInfo.FileName = "cmd.exe";
                     process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
                     process.StartInfo.ArgumentList.Add($@"/c rasdial MyServer {SelectedServerModel.Username} {SelectedServerModel.Password} /phonebook:./VPN/{SelectedServerModel.Server}.pbk");
-                    //process.StartInfo.UseShellExecute = false;
-                    //process.StartInfo.CreateNoWindow = true;
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.CreateNoWindow = true;
 
                     process.Start();
                     process.WaitForExit();
 
+                    // Preparing for Errors
                     switch (process.ExitCode)
                     {
                         case 0:
@@ -298,9 +305,13 @@ namespace WpfApp1.ViewModels
                     }
                 });
             }
+            
+            // If user is connected than disconnect
             else
             {
                 Status = "Disconnectiong...";
+                
+                // Starting the process for disconnecting via CMD
                 var process = new Process();
                 process.StartInfo.FileName = "cmd.exe";
                 process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
@@ -310,12 +321,8 @@ namespace WpfApp1.ViewModels
                 process.WaitForExit();
 
                 Status = "Standby";
-                ConDisConContent = "Connect";
-                
-            }
-            
+                ConDisConContent = "Connect"; 
+            }  
         }
-
-
     }
 }
