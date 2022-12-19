@@ -114,6 +114,8 @@ namespace WpfApp1.ViewModels
                 // The Display should be changed by now if the Authentication went trough,
                 // if LoginView is still visable, something went wrong.
                 ErrorMessage = "* Access gained, something went wrong...";
+
+                IsLoginViewVisible = false;
             }
             else
             {

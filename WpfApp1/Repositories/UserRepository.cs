@@ -16,7 +16,7 @@ namespace WpfApp1.Repositories
         // Creating a User, sql connection string is located at ReposityBase
         public bool Add(NetworkCredential credential)
         {
-            // Needs to return a value
+            // Needs to return a value 
             bool userCreated;
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
@@ -25,19 +25,21 @@ namespace WpfApp1.Repositories
                 // Opening connection and inserting credentials
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO Table(username, password) VALUES(@username, @password)";
+                command.CommandText = "INSERT INTO [Table] (username, password) VALUES(@username, @password)";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 
                 // Executing insertion, and making our boolean variable true or false
                 userCreated = command.ExecuteScalar() == null ? false : true;
                 connection.Close();
-                
+
+
                 // Display
                 LoginView login = new LoginView();
                 RegisterView reg = new RegisterView();
                 reg.Close();
                 login.Show();
+                
             }
             return userCreated;
         }
@@ -62,12 +64,14 @@ namespace WpfApp1.Repositories
                 validUser = command.ExecuteScalar() == null ? false : true;
                 connection.Close();
 
-                // Display
-                SolanaVpnView vpn = new SolanaVpnView();
-                LoginView login = new LoginView();
-                login.Close();
-                vpn.Show();
-
+                if (validUser)
+                {
+                    // Display
+                    SolanaVpnView vpn = new SolanaVpnView();
+                    LoginView login = new LoginView();
+                    login.Close();
+                    vpn.Show();
+                }
             }
             return validUser;
         }
@@ -84,7 +88,7 @@ namespace WpfApp1.Repositories
                 
                 // Opening connection and checking for already existing username
                 connection.Open();
-                SqlCommand check_User_Name = new SqlCommand("SELECT COUNT(*) FROM [Table] WHERE ([Username] = @username)", connection);
+                SqlCommand check_User_Name = new SqlCommand("SELECT COUNT(*) FROM [Table] WHERE ([username] = @username)", connection);
                 check_User_Name.Parameters.AddWithValue("@username", username);
                 
                 // Giving a value to UserExist if it founds a match
